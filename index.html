@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>The Psychic Game</title>
+</head>
+
+<body>
+
+<div id="game">
+    <h3> PRESS ANY ALPHABET ON YOUR KEYBOARD TO PLAY</h3>
+
+</div>
+
+
+
+<!-- Need user to make a choice
+need computer to make choice
+Caputre those choices
+Guesses Left
+Guesses So Far
+Compare the choices, and determine a win or loss
+If win, increase the Wins Counter and start the game over again without refreshing the page
+If loss, increase the Losses Counter and restart the game without a page refreshing
+Display the result to the user -->
+
+
+<script type="text/javascript">
+
+
+    //creating array of options for the computer
+
+    var options = [
+     "a","b", "c","d","e","f","g","h","i","j", "k","l","m","n","o","p","q",
+     "r","s","t","u","v","w","x","y","z"
+     ];
+    //creating counters for wins and losses
+    var wins = 0;
+    var losses = 0;
+
+    // Using onKeyup function to read KeyboardEvent
+        document.onkeyup = function () {
+            var userguess = String.fromCharCode(event.keyCode).
+            toLowerCase();
+            console.log(userguess);
+
+    //creating computer random generated letter
+        var computerGuess = options[Math.floor(Math.random()*options.length)];
+            console.log(computerGuess);
+
+    //making sure user only hit the alphabet on the keyboard
+       if (userguess === "a" || userguess === "b" || userguess === "c" || userguess === "d" || userguess === "e"|| userguess === "f" || userguess === "g" || userguess === "h" || userguess === "i" || userguess === "j" || userguess ===  "k"|| userguess === "l" || userguess === "m" ||userguess ==="n" || userguess === "o" ||userguess === "p"||userguess === "q"||
+       userguess === "r"|| userguess === "s" || userguess === "t" || userguess === "u" || userguess === "v" ||userguess === "w" ||userguess === "x"||userguess === "y"||userguess === "z" ) {
+           //Win or Loss
+            if ((userguess === computerGuess )) {
+                wins++;
+          
+            }
+            if ((userguess !== computerGuess )) {
+                losses++;
+               
+            }
+
+       } else {
+           alert("Please only choose alphabet");
+       }
+       
+    
+
+    var html = "<h3> PRESS ANY ALPHABET ON YOUR KEYBOARD TO PLAY</h3>" + 
+        "<p>Wins: " + wins + "</p>" +
+        "<p>Losses: " + losses + "</p>";
+        
+
+    document.querySelector("#game").innerHTML = html;
+
+    }
+
+
+</script>
+
+
+</body>
+
+
+
+
+
+
+
+</html>
