@@ -38,13 +38,18 @@ Display the result to the user -->
     //creating counters for wins and losses
     var wins = 0;
     var losses = 0;
-    var Guesses = 20;
+    var guesses = 20;
+    var soFar = [];
 
     // Using onKeyup function to read KeyboardEvent
         document.onkeyup = function () {
             var userguess = String.fromCharCode(event.keyCode).
             toLowerCase();
             console.log(userguess);
+            //to show guesses 
+            soFar.push(userguess);
+            
+            
 
     //creating computer random generated letter
         var computerGuess = options[Math.floor(Math.random()*options.length)];
@@ -56,16 +61,14 @@ Display the result to the user -->
            //Win or Loss
             if ((userguess === computerGuess )) {
                 wins++;
-          
-            } 
-            if ((userguess !== computerGuess )) {
-                losses++;
+            } else {
+                guesses--;
+                 if (guesses === 0) {
+                     losses++;
+                     guesses= 20;
+                 }
             }
-            if (losses++) {
-                Guesses--;
-            }
-
-
+        
        } else {
            alert("Please only choose alphabet");
        }
@@ -75,8 +78,8 @@ Display the result to the user -->
     var html = "<h3> PRESS ANY ALPHABET ON YOUR KEYBOARD TO PLAY</h3>" + 
         "<p>Wins: " + wins + "</p>" +
         "<p>Losses: " + losses + "</p>"+
-        "<p>Guesses Left:" + "" + "</p>"+
-        "<p>Your Guesses So Far:" + "" + "</p>";
+        "<p>Guesses Left:" + guesses + "</p>"+
+        "<p>Your Guesses So Far:" + soFar + "</p>";
         
 
     document.querySelector("#game").innerHTML = html;
